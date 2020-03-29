@@ -14,13 +14,42 @@ router.get('/', async (req, res) => {
 
 });
 
+//añadir
 router.post('/add', async (req, res) => {
 
     const task = new Task(req.body);
     await task.save();
 
-    res.send('Dato agregado');
+    res.redirect('/');
 
 });
+//cambiar estado booleano
+router.get('/turn/:id', async (req, res, next) => {
+    let { id } = req.params;
+    const task = await Task.findById(id);
+    task.status = !task.status;
+    await task.save();
+    res.redirect('/');
+  });
+  
+  //modificar
+  router.get('/edit/:id', async (req, res, next) => {
+    const task = await Task.findById(req.params.id);
+    console.log(task)
+    res.render('edit', { task });
+  });
+
+  router.post('/edit/:id', async (req, res, next) => {
+    const { id } = req.params;
+    await Task.update({_id: id}, req.body);
+    res.redirect('/');
+  });
+  
+  //eliminar 
+  router.get('/delete/:id', async (req, res, next) => {
+    let { id } = req.params;
+    await Task.remove({_id: id});
+    res.redirect('/');
+  });
 
 module.exports = router;
