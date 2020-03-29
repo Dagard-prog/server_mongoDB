@@ -5,6 +5,7 @@
 <pre>
 
   
+  
 
 </pre>
 
@@ -43,14 +44,23 @@
           </tr>
         </thead>
         <tbody>
-          <%for(var i = 0; i< tasks.lenght; i++) { %>
+          <%for(var i = 0; i< tasks.length; i++) { %>
 
             <tr>
 
               <td><%= i+1 %></td>
+              <td><%= tasks[i].tittle %></td>
+              <td><%= tasks[i].description %></td>
+              <td>
+                <a href="" class="btn btn-dark">Realizado</a>
+                
+
+
+              </td>
+
 
             </tr>
-            
+             
 
           <% } %>
 

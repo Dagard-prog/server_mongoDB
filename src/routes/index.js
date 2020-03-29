@@ -19,7 +19,7 @@ router.post('/add', async (req, res) => {
     const task = new Task(req.body);
     await task.save();
 
-    res.send('holi');
+    res.send('Dato agregado');
 
 });
 
